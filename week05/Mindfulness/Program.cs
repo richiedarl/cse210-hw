@@ -38,3 +38,12 @@ class Program
         Console.WriteLine("Goodbye!");
     }
 }
+
+/*
+EXCEEDING REQUIREMENTS:
+
+I added a spinner animation using rotating characters and backspaces instead of just printing dots.
+I also used time-based loops (DateTime) instead of fixed loops so the activities run exactly for the duration the user enters.
+
+Additionally, I randomized prompts in the Listing and Reflecting activities to improve variation each time the program runs.
+*/

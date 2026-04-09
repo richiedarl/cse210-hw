@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 
 public class Activity
 {
@@ -15,6 +16,7 @@ public class Activity
 
     public void StartActivity()
     {
+        Console.Clear();
         Console.WriteLine($"Starting {_name} Activity...");
         Console.WriteLine(_description);
         Console.Write("Enter duration in seconds: ");
@@ -26,18 +28,34 @@ public class Activity
 
     public void EndActivity()
     {
-        Console.WriteLine("Well done!");
+        Console.WriteLine("\nWell done!");
         Console.WriteLine($"You completed {_duration} seconds of the {_name} Activity.");
         ShowSpinner(3);
     }
 
     public void ShowSpinner(int seconds)
     {
-        // TODO: Add spinner animation
+        string[] spinner = { "|", "/", "-", "\\" };
+
+        DateTime endTime = DateTime.Now.AddSeconds(seconds);
+
+        int i = 0;
+        while (DateTime.Now < endTime)
+        {
+            Console.Write(spinner[i % spinner.Length]);
+            Thread.Sleep(200);
+            Console.Write("\b \b");
+            i++;
+        }
     }
 
     public void ShowCountdown(int seconds)
     {
-        // TODO: Add countdown animation
+        for (int i = seconds; i > 0; i--)
+        {
+            Console.Write(i);
+            Thread.Sleep(1000);
+            Console.Write("\b \b");
+        }
     }
 }

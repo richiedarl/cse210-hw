@@ -9,23 +9,42 @@ public class ListingActivity : Activity
     public ListingActivity() 
         : base("Listing", "This activity helps you list positive things.")
     {
-        _prompts = new List<string>();
-        _count = 0;
+        _prompts = new List<string>()
+        {
+            "Who are people you appreciate?",
+            "What are your personal strengths?",
+            "What made you smile today?",
+            "Who have you helped recently?"
+        };
 
-        // TODO: Add prompts
+        _count = 0;
     }
 
     public void Run()
     {
         StartActivity();
 
+        Random rand = new Random();
+        string prompt = _prompts[rand.Next(_prompts.Count)];
+
+        Console.WriteLine($"\nPrompt: {prompt}");
+        Console.WriteLine("Start listing items. Press Enter after each one.");
+
         GetUserList();
+
+        Console.WriteLine($"You listed {_count} items!");
 
         EndActivity();
     }
 
     public void GetUserList()
     {
-        // TODO: Collect user input into a list
+        DateTime endTime = DateTime.Now.AddSeconds(_duration);
+
+        while (DateTime.Now < endTime)
+        {
+            Console.ReadLine();
+            _count++;
+        }
     }
 }
